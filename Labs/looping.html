@@ -1,0 +1,57 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+
+    <style type="text/css">
+
+        table {
+            width: 200px;
+            border-collapse: collapse;
+           
+            
+        }
+        tr.oddRow {
+            background-color: lightgreen;
+        }
+        table, th, td {
+            border: 1px solid black;
+            padding: 12px;
+        }
+        th {
+            color: white;
+            text-align: left;
+            background-color: darkgreen;
+        }
+    </style>
+    <script type="text/javascript">
+        document.writeln("<h1>Lab Exercise #5</h1>");
+        document.writeln("<table>");
+        document.writeln("<thead><tr><th>N</th>");
+        document.write("<th>N*10</th><th>100*N</th><th>1000*N</th></tr></thead>")
+
+        var counter = 5;
+        for (var i=0; i<counter; i++) {
+            if (i%2 !== 0)  {
+                document.writeln("<tr class='oddRow'><td>" + (i+1)+ "</td>");
+                document.writeln("<td>"+(i+1)*10+"</td>");
+                document.writeln("<td>"+(i+1)*100+"</td>");
+                document.writeln("<td>"+(i+1)*1000+"</td>");
+            }else {
+                document.writeln("<tr><td>" + (i+1)+ "</td>");
+                document.writeln("<td>"+(i+1)*10+"</td>");
+                document.writeln("<td>"+(i+1)*100+"</td>");
+                document.writeln("<td>"+(i+1)*1000+"</td>");
+            }
+        }
+        document.writeln("</table>")
+
+    </script>
+</head>
+<body>
+
+</body>
+</html>

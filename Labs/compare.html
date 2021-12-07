@@ -1,0 +1,35 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+
+    <script type="text/javascript">
+        var num1;
+        var num2;
+        var number1;
+        var number2;
+
+        number1 = window.prompt("Please enter your first Number");
+        number2 = window.prompt("Please enter your second Number");
+        num1 = parseInt(number1);
+        num2 = parseInt(number2);
+
+        if (number1 == null || number2 == null || isNaN(number1) || isNaN(number2)) {
+            window.alert("You did not enter a valid number!");
+        } else if (number1 == number2)  {
+            document.writeln("<h1> These two numbers are equal!.<h1>");
+        } 
+        else if (num1 > num2) {
+            window.alert(num1 + " is larger");        
+        } else {
+            window.alert(num2 + " is larger");
+        }
+    </script>
+</head>
+<body>
+    
+</body>
+</html>

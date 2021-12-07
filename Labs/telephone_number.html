@@ -1,0 +1,63 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+    <style type="text/css">
+        table, td{
+            border: 1px solid black;
+        }
+    </style>
+
+    <script type="text/javascript">
+
+        function start(){
+            var split = document.getElementById("split");
+            split.addEventListener("click", splitNumber, false);
+        }
+
+        function splitNumber () {
+
+            var num = document.getElementById("phoneNumber").value;
+            var code = num.split("(");
+            var code1 = code[1].split(")");
+            var code = document.getElementById("areacode");
+            code.value = code1[0];
+            var lastDigits = document.getElementById("num");
+            var last = code1[1];
+            var lastSplit = last.split("-");
+            lastDigits.value = lastSplit[0] + lastSplit[1];
+        }
+
+        window.addEventListener("load", start, false);
+    
+
+    </script>
+
+</head>
+<body>
+    <h1>Lab Exercise #7</h1>
+    <table>
+        <tr>
+            <td>Enter a phone number [in the form (555) 555-5555]</td>
+            <td><input type="text" name="phoneNumber" id="phoneNumber"></td>
+        </tr>
+        <tr>
+            <td><button type="button" id="split" name="split" onclick="splitNumber">Split</button></td>
+        </tr>
+        <tr>
+            <td>Area code: </td>
+            <td><input type="text" id="areacode"></td>
+        </tr>
+        <tr>
+            <td>Number:</td>
+            <td><input type="text" name="" id="num"></td>
+        </tr>
+
+    </table>
+
+    
+</body>
+</html>
