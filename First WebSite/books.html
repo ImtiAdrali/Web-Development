@@ -1,0 +1,279 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+    <link rel="stylesheet" href="https://use.fontawesome.com/releases/v5.8.1/css/all.css" integrity="sha384-50oBUHEmvpQ+1lW4y57PTFmhCaXp0ML5d60M1M7uH2+nqUivzIebhndOJK28anvf" crossorigin="anonymous">
+    <link rel="stylesheet" href="style.css">
+    <link href="css/bootstrap-4.4.1.css" rel="stylesheet">
+    <style type = "text/css">
+        /* li { display: inline-block; padding: 4px; width: 230px; } */
+        
+     </style>
+     <script src="https://code.jquery.com/jquery-3.6.0.min.js" integrity="sha256-/xUj+3OJU5yExlq6GSYGSHk7tPXikynS7ogEvDej/m4=" crossorigin="anonymous"></script>
+     <script>
+        var asyncRequest; // variable to hold XMLHttpRequest object
+        var Title;
+        var Description;
+        // set up and send the asynchronous request to get the XML file
+        function getImages( url )
+        {
+           // attempt to create XMLHttpRequest object and make the request
+           try
+           {
+              asyncRequest = new XMLHttpRequest(); // create request object
+     
+              // register event handler
+              asyncRequest.addEventListener(
+                 "readystatechange", processResponse, false); 
+              asyncRequest.open( "GET", url, true ); // prepare the request
+              asyncRequest.send( null ); // send the request
+           } // end try
+           catch ( exception )
+           {
+              alert( "Request Failed" );
+           } // end catch
+        } // end function getImages
+        
+        // parses the XML response; dynamically creates an undordered list and 
+        // populates it with the response data; displays the list on the page
+        function processResponse()
+        {
+           // if request completed successfully and responseXML is non-null
+           if ( asyncRequest.readyState == 4 && asyncRequest.status == 200 && 
+              asyncRequest.responseXML )
+           {
+              clearImages(); // prepare to display a new set of images
+     
+              // get the covers from the responseXML
+              var covers = asyncRequest.responseXML.getElementsByTagName(
+                 "cover" )
+     
+              // get base URL for the images
+              var baseUrl = asyncRequest.responseXML.getElementsByTagName( 
+                 "baseurl" ).item( 0 ).firstChild.nodeValue;
+                 
+              
+              // get the placeholder div element named covers
+              var output = document.getElementById( "covers" );
+              
+              // create an unordered list to display the images
+              var imagesUL = document.createElement( "ul" );
+              
+              // place images in unordered list
+              for ( var i = 0; i < covers.length; ++i )
+              {
+                 var cover = covers.item(i); // get a cover from covers array
+              
+                 // get the image filename
+                 var image = cover.getElementsByTagName( "image" ).
+                    item( 0 ).firstChild.nodeValue;
+                 
+                 // get the image title
+                 var title = cover.getElementsByTagName( "title" ).
+                    item( 0 ).firstChild.nodeValue;
+
+                // get the image description
+                // var description = cover.getElementsByTagName("description").
+                //     item(0).firstChild.nodeValue;
+              
+                 // create li and img element to display the image
+                 var imageLI = document.createElement( "li" );
+                 var imageTag = document.createElement( "img" );
+                 imageTag.id = title;
+                
+                 // set img element's src attribute
+                 imageTag.setAttribute( "src", baseUrl + escape( image ) );
+                 imageTag.style.width = "160px"; 
+     
+                //  Adding event listener to the images to show the title
+                 imageTag.addEventListener("mouseover", showTitle, false);
+                 imageTag.addEventListener("mouseout", clearTitle, false);
+                 imageLI.appendChild( imageTag ); // place img in li
+                 imagesUL.appendChild( imageLI ); // place li in ul
+               
+            
+              } // end for statement
+     
+              output.appendChild( imagesUL ); // append ul to covers div
+           } // end if 
+        } // end function processResponse
+     
+        // clears the covers div
+        function clearImages()
+        {
+           document.getElementById( "covers" ).innerHTML = ""; 
+        } // end function clearImages
+     
+        // register event listeners
+        function registerListeners()
+        {
+           document.getElementById( "all" ).addEventListener(
+              "click", function() { getImages( "all.xml" ); }, false ); 
+           document.getElementById( "simply" ).addEventListener(
+              "click", function() { getImages( "java.xml" ); }, false ); 
+           document.getElementById( "howto" ).addEventListener(
+              "click", function() { getImages( "python.xml" ); }, false ); 
+           document.getElementById( "dotnet" ).addEventListener(
+              "click", function() { getImages( "phpjavascript.xml" ); }, false ); 
+           document.getElementById( "java" ).addEventListener(
+              "click", function() { getImages( "c++.xml" ); }, false ); 
+           document.getElementById( "none" ).addEventListener(
+              "click", clearImages, false ); 
+        } // end function registerListeners
+     
+     
+        function showTitle() {
+           var title = document.getElementById("title");
+           //var description = document.getElementById("description");
+           title.innerHTML = this.id;
+        }
+     
+        function clearTitle() {
+           document.getElementById("title").innerHTML = " ";
+        }
+     
+     
+     
+        window.addEventListener( "load", registerListeners, false );
+        </script>
+        <style>
+           .bl {
+               display: inline-block;
+               padding: 12px;
+               padding-left: 100px;
+           }
+           #covers li{
+               display: inline-block;
+               margin-top: 12px;
+           }
+           #covers {
+               width: 100%;
+               align-items: center;
+              
+           }
+           .bookList {
+                display: inline-block;
+                width: 100%;
+                text-align: center;
+           }
+           #title {
+               margin-top: 50px;
+               text-align: center;
+           }
+            
+        </style>
+</head>
+<body>
+
+    <div class="container-fluid">
+     <div class="row" id="nav">
+        <div class="col-md-12 minNav">
+            
+            <ul class="nav justify-content-center nav-tabs navigation ">
+                
+                <li class="nav-item">
+                    <a class="nav-link" href="index.html"><li class="fa fa-home home"></li>Home</a>
+                </li>
+                <li class="nav-item">
+                    <a class="nav-link" href="Forms.html">Forms</a>
+                </li>
+                <li class="nav-item">
+                    <a class="nav-link" href="reference.html">Reference</a>
+                </li>
+                <li class="nav-item">
+                    <a class="nav-link" href="about.html">About</a>
+                </li>
+                <li class="nav-item">
+                    <a class="nav-link" href="jsEffects.html">JS Effects</a>
+                </li>
+                <li class="nav-item">
+                    <a class="nav-link" href="books.html">Books</a>
+                </li>
+            </ul>
+        </div>
+        <div class="dp">
+            <img src="./images/menubars.png" alt="bars" class="menuBars">
+            <div class="dpc">
+              <a href="index.html">Home</a>
+              <a href="Forms.html">Forms</a>
+              <a href="reference.html">Reference</a>
+              <a href="about.html">About</a>
+              <a href="jsEffects.html">JS Effects</a>
+            </div>
+        </div>
+    </div> 
+   
+
+    <div class="row">
+        <div class="col-md-12">
+            <div class="frontImg">
+                <img src="./images/dotts.jfif" alt="Light Image" id="mainImage">
+                <div class="center">
+                    
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <div class="row">
+        <div class="chooseLan col-md-3">
+            <h4>Readings</h4>
+        </div>
+    </div>
+
+ 
+
+    <div class="row">
+        <div class="col-md-12 blist">
+            <ul class="bookList navbar-nav justify-content-center nav-tabs" >
+                <li id="all" class="nav-item active bl">📚 All Books</li>
+                <li id="simply" class="nav-item active bl">📔 Java Books</li>
+                <li id="howto" class="nav-item active bl">📔 Python Books</li>
+                <li id="dotnet" class="nav-item active bl">📔 PHP and JavaScript</li>
+                <li id="java" class="nav-item active bl">📔 C++ Books</li>
+                <li id="none" class="nav-item bl"> 🚱 None </li>
+            </ul>
+        </div>
+    </div>
+    
+    <div class="row">
+        <div class="col-md-12">
+            <div id = "covers" class="bookList"></div>
+        </div>
+        <div class="col-md-12">
+            <div id="title"></div>
+            <div id="description"></div>
+        </div>
+    </div>
+    
+    
+    <!-- <div id="title"></div> -->
+
+    
+
+
+
+    <div class="row">
+        <div class="col-md-12">
+            <div class="footer">
+                <p>This website is developed as an educational project. 
+                    Certain materials are included under the fair use exemption of the U.S. Copyright Law and have been prepared 
+                    according to the multimedia fair use guidelines and are restricted from further use
+                </p>
+            </div>
+        </div>
+    </div>
+
+    <div>
+
+    <!-- jQuery (necessary for Bootstrap's JavaScript plugins) --> 
+	<script src="js/jquery-3.4.1.min.js"></script>
+
+	<!-- Include all compiled plugins (below), or include individual files as needed -->
+	<script src="js/popper.min.js"></script> 
+	<script src="js/bootstrap-4.4.1.js"></script>
+</body>
+</html>

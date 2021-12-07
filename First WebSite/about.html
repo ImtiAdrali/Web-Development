@@ -1,0 +1,165 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+    <link rel="stylesheet" href="style.css">
+    <link rel="stylesheet" href="https://use.fontawesome.com/releases/v5.8.1/css/all.css" integrity="sha384-50oBUHEmvpQ+1lW4y57PTFmhCaXp0ML5d60M1M7uH2+nqUivzIebhndOJK28anvf" crossorigin="anonymous">
+    <script src="script.js"></script>
+    <!-- Bootstrap -->
+	<link href="css/bootstrap-4.4.1.css" rel="stylesheet">
+    <script src="SpryAssets/SpryMenuBar.js" type="text/javascript"></script>
+    <script src="SpryAssets/SpryData.js" type="text/javascript"></script>
+    <script src="SpryAssets/xpath.js" type="text/javascript"></script>
+    <script src="https://code.jquery.com/jquery-3.6.0.js"></script>
+    
+
+    <script type="text/javascript">
+        var xmlData = new Spry.Data.XMLDataSet("table.xml", "Languages/language");
+    </script>
+    <script>
+        $(document).ready(function() {
+            $("#showTable").click(function() {
+                $(".table").slideToggle();
+            });
+
+            
+        });
+    </script>
+</head>
+<body>
+    <div class="container-fluid">
+    <div class="row" id="nav">
+        <div class="col-md-12 minNav">
+            <ul id="navigation" class="nav justify-content-center nav-tabs navigation offset-md-0">
+                <li class="nav-item">
+                    <a class="nav-link" href="index.html"><li class="fa fa-home home"></li> Home</a>
+                </li>
+                <li class="nav-item">
+                    <a class="nav-link" href="Forms.html">Forms</a>
+                </li>
+                <li class="nav-item">
+                    <a class="nav-link" href="reference.html">Reference</a>
+                </li>
+                <li class="nav-item">
+                    <a class="nav-link" href="about.html">About</a>
+                </li>
+                <li class="nav-item">
+                    <a class="nav-link" href="jsEffects.html">JS Effects</a>
+                </li>
+                <li class="nav-item">
+                    <a class="nav-link" href="books.html">Books</a>
+                </li>
+            </ul>
+            
+        </div>
+
+        <div class="dp">
+            <img src="./images/menubars.png" alt="bars" class="menuBars">
+            <div class="dpc">
+              <a href="index.html">Home</a>
+              <a href="Forms.html">Forms</a>
+              <a href="reference.html">Reference</a>
+              <a href="about.html">About</a>
+              <a href="jsEffects.html">JS Effects</a>
+            </div>
+        </div>
+    </div>
+
+
+    <div class="row">
+        <div class="col-md-12">
+            <div class="frontImg">
+                <img src="./images/dotts.jfif" alt="Light Image" id="mainImage">
+                <div class="center">
+                    <a href="#aboutMe">Visit About Me Section</a>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    
+
+    <div class="row">
+        <div class="chooseLan col-md-3">
+            <h4>About Us & Languages that we provide</h4>
+        </div>
+    </div>
+    <div class="displayTable">
+        <button id="showTable" class="btn btn-primary">Click the Button to Display the Table</button>
+    </div>
+
+    
+        <div class="row showRow" style="overflow-x: auto;">
+            <div class="col-md-12" spry:region="xmlData">
+                <table class="table">
+                    <tr>
+                        <th>Languages</th>
+                        <th>Language Type</th>
+                        <th>Language Uses</th>
+                        <th>Language Salary</th>
+                        <th>Ease of Learning</th>
+                        <th>Popularity</th>
+                    </tr>
+                    <tr spry:repeat="xmlData" spry:hover="rowHover" spry:setrow="xmlData">
+                        <td>{name}</td>
+                        <td>{type}</td>
+                        <td>{uses}</td>
+                        <td>{salary}</td>
+                        <td>{easeOfLearning}</td>
+                        <td>{popularity}</td>
+                    </tr>
+                </table>
+            </div>
+        </div>
+    
+
+        <div class="row">
+            <div class="col-md-12 me">
+                <div class="aboutme">
+                    <img src="./images/personal.JPG" alt="Imtiaz's Photo">
+                    <h2>About Me</h2>
+                    <p id="aboutMe">My name is Imtiaz Ahmad. I am a student at George Mason University based in Fairfax. 
+                        I am majoring in Informaiotion Technology with a concentration
+                        in Web Development. I have created this website for school purposes,
+                        however as I gain experience with different Languages
+                        I would like to take this web site in to a whole new 
+                        level. This is just the beginning.
+                    </p><br><br>
+                    <div class="linkedIn">
+                        <button type="button" id="linkedIn" onclick="openLinkedIn()">linkedIn</button>
+                    </div>
+                    
+                </div>
+            </div>
+        </div>
+   
+
+    
+ 
+
+    <div class="row">
+        <div class="col-md-12">
+            <div class="footer">
+                <p> This website is developed as an educational project. 
+                    Certain materials are included under the fair use exemption of the U.S. Copyright Law and have been prepared 
+                    according to the multimedia fair use guidelines and are restricted from further use
+                </p>
+                <div class="css">
+                    <a href="style.css">Click here to view the CSS</a>
+                </div>
+            </div>
+        </div>
+    </div>
+    </div>  
+    <!-- jQuery (necessary for Bootstrap's JavaScript plugins) --> 
+    <script src="js/jquery-3.4.1.min.js"></script>
+
+    <!-- Include all compiled plugins (below), or include individual files as needed -->
+    <script src="js/popper.min.js"></script> 
+    <script src="js/bootstrap-4.4.1.js"></script>
+        
+</body>
+</html>
