@@ -1,0 +1,257 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+    <link rel="stylesheet" href="style.css">
+    <link rel="stylesheet" href="https://use.fontawesome.com/releases/v5.8.1/css/all.css" integrity="sha384-50oBUHEmvpQ+1lW4y57PTFmhCaXp0ML5d60M1M7uH2+nqUivzIebhndOJK28anvf" crossorigin="anonymous">
+    <script src="script.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/three.js/r61/three.min.js"></script></script>
+    
+    <!-- Bootstrap -->
+	<link href="css/bootstrap-4.4.1.css" rel="stylesheet">
+    <script src="https://code.jquery.com/jquery-3.6.0.min.js" integrity="sha256-/xUj+3OJU5yExlq6GSYGSHk7tPXikynS7ogEvDej/m4=" crossorigin="anonymous"></script>
+    <script>
+        //Defined username variable to hold the username
+        var username;
+
+        //Function to get the login elemnet by id
+        function start() {
+            document.getElementById("loginButton").addEventListener("click", displayForm, false);       
+        }
+
+    
+        //function for reseting the user name
+        function getElement() {
+            document.getElementById("reset").addEventListener("click", displayForm1, false);
+        }
+
+        function displayForm1() {
+            // Prompt to reset the name
+            username = window.prompt("Enter your new name to reset: ");
+
+            // Validate the user name if the user did not enter anything display the same name
+            if (username == null || username == "") {
+
+                // The name is valid set the new name for the key Name 
+                window.localStorage.setItem("Name", window.localStorage.getItem("Name"));
+            }else {
+                window.localStorage.setItem("Name", username);
+            }   
+
+            // // Reloads the page once the user have reset their name
+           location.reload();
+        }
+
+
+        window.addEventListener('load', getElement, false);
+
+        // Script to display random images
+        var images = ["dotts.jfif", "satalite.jfif", "windpower.jfif", "light.jpg"];
+        function chooseImage() {
+
+            // ranImgae is use to hold the random number between 0 and 3
+            var ranImage = Math.floor(Math.random() * images.length)
+
+            //The ranImage index in used to display the random image as the front image of the home screen
+            var mainImage = document.getElementById("mainImage").src = "./images/" + images[ranImage];    
+            //mainImage.setAttribute("src", "./images/" + images[ranImage]);
+        }
+        
+        window.addEventListener('load', chooseImage, false);
+        window.addEventListener("load", start, false); 
+    </script>
+   
+     
+</head>
+<body>
+    <div class="container-fluid">
+        <div class="row" id="nav">
+            <div class="col-md-12 minNav">
+                <ul id="navigation" class="nav justify-content-center nav-tabs navigation offset-md-0">
+                    <li class="nav-item">
+                        <a class="nav-link" href="index.html"><li class="fa fa-home home"></li> Home</a>
+                    </li>
+                    <li class="nav-item">
+                        <a class="nav-link" href="Forms.html">Forms</a>
+                    </li>
+                    <li class="nav-item">
+                        <a class="nav-link" href="reference.html">Reference</a>
+                    </li>
+                    <li class="nav-item">
+                        <a class="nav-link" href="about.html">About</a>
+                    </li>
+                    <li class="nav-item">
+                        <a class="nav-link" href="jsEffects.html">JS Effects</a>
+                    </li>
+                    <li class="nav-item">
+                        <a class="nav-link" href="books.html">Books</a>
+                    </li>
+                    <!-- <li class="nav-item">
+                        <button type="button" id="loginButton" >Log in</button>
+                    </li>  -->
+                    <li class="nav-item">
+                        <button type="button" id="reset" class="btn btn-outline-danger" style="position: relative; top: -3%;">Reset</button>
+                    </li> 
+                </ul>
+                
+            </div>
+
+            <div class="dp">
+                <img src="./images/menubars.png" alt="bars" class="menuBars">
+                <div class="dpc">
+                  <a href="index.html">Home</a>
+                  <a href="Forms.html">Forms</a>
+                  <a href="reference.html">Reference</a>
+                  <a href="about.html">About</a>
+                  <a href="jsEffects.html">JS Effects</a>
+                </div>
+            </div>
+        </div>
+
+        <div class="row">
+            <div class="col-md-12">
+                <div class="setName">
+                </div>
+            </div>
+        </div>
+        <div class="row">
+            <div class="col-md-12">
+                <div class="frontImg">
+                    <img src="./images/light.jpg" alt="Light Image" id="mainImage">
+                    <div class="center">
+                        <p>
+                            <script>
+                                    var getName = window.localStorage.getItem("Name");
+                                    
+                                    if (getName == null) {
+                                        var name  = window.prompt("Please enter your name: ");
+                                        while (name == null || name == false)
+                                            name  = window.prompt("Please enter your name: ");
+                                    
+                                            window.localStorage.setItem("Name", name);
+                                    }
+                                    if (window.localStorage.getItem("Name") != "" || window.localStorage.getItem("Name") != null)
+                                        document.writeln("<p style='color: black; text-align: left'> <li class='l1'>Welcome </li><li class='l2'>" + window.localStorage.getItem("Name").toUpperCase() + "!</li><li class='l3'>Learn with <span>US!</span></li></p>");
+                                    
+                            </script>
+                        </p>
+
+                        
+                    </div>
+                </div>
+            </div>
+        </div>
+            
+
+    
+
+
+
+       
+            <div class="row" id="language">
+                <div class="col-md-12">
+                    <div class="chooseLan col-md-3">
+                        <h4 id="LangProvided">Choose A language that you would like to learn</h4>
+                    </div>
+
+                    <div class="cards">
+                        <div class="card">
+                            <img src="./images/java1.jpg" alt="Java Image">
+                            <div class="container">
+                                <h4>Java</h4>
+                                <p>Learn Java</p>
+                                <a href="https://www.tutorialspoint.com/java/index.htm" target="_blank">Learn</a>
+                            </div>
+                        </div>
+
+                        <div class="card">
+                            <img src="./images/python12.jpg" alt="Python Image">
+                            <div class="container">
+                                <h4>Python</h4>
+                                <p>Learn Python</p>
+                                <a href="https://www.javatpoint.com/python-tutorial" target="_blank">Learn</a>
+                            </div>
+                        </div>
+
+                        <div class="card">
+                            <img src="./images/c++.jpg" alt="C++ Image">
+                            <div class="container">
+                                <h4>C++</h4>
+                                <p>Learn C++</p>
+                                <a href="https://www.w3schools.com/cpp/default.asp" target="_blank">Learn</a>
+                            </div>
+                        </div>
+
+                        <div class="card">
+                            <img src="./images/js12.png" alt="Java Script Image">
+                            <div class="container">
+                                <h4>Java Script</h4>
+                                <p>Learn JavaScript</p>
+                                <a href="https://www.w3schools.com/js/default.asp" target="_blank">Learn</a>
+                            </div>
+                        </div>
+
+                        <div class="card">
+                            <img src="./images/php1.png" alt="PHP Image">
+                            <div class="container">
+                                <h4>PHP</h4>
+                                <p>Learn PHP</p>
+                                <a href="https://www.w3schools.com/php/default.asp" target="_blank">Learn</a>
+                            </div>
+                        </div>
+                    </div> 
+                </div>
+            </div>
+
+            <div class="row">
+                <div class="col-md-12">
+                    <div class="whyCode col-md-12">
+                        <h5>Why Learn Programming?</h5>
+                        <ul id="whyCode">
+                            <li>Coding and programming careers have great earning potential</li>
+                            <li>Demand remain strong for coding-related jobs</li>
+                            <li>Coding ability gives new perspective to problem-solving</li>
+                            <li>Learning to code offers career flexibility</li>
+                            <li>Coding can be useful in jobs you might not expect</li>
+                        </ul>
+                        <input type="button" id="appendData" value="Append">
+                        <input type="text" name="appendNewList" id="appendNewList"  placeholder="Enter something to add to the list">
+                    </div>
+                </div>
+            </div>
+
+            <div class="row">
+                <div class="col-md-12">
+                    <div class="footer">
+                        <!--<div class="internalLink"><a href="#nav">Top</a>
+                        </div> -->
+                        <p>This website is developed as an educational project. 
+                            Certain materials are included under the fair use exemption of the U.S. Copyright Law and have been prepared 
+                            according to the multimedia fair use guidelines and are restricted from further use
+                        </p>
+                        <!-- <p><button class="btn btn-default" onclick="myMove()">Click To Fly</button></p>  -->
+                        <div class="col-md-3 lastModifiedDate">
+                            <h5>Last Modified Date:</h5>
+                            <div class="date"><script>
+                                // This line is used to print out the last modified date of the home page 
+                                document.writeln(document.lastModified)
+                            </script></div>
+                        </div>
+                        <!-- <div id ="animate"><img src="./images/aeo1.png" width="50px" alt=""></div> -->
+                    </div>
+                </div>
+            </div>
+        </div>
+    
+
+    <!-- jQuery (necessary for Bootstrap's JavaScript plugins) --> 
+	<script src="js/jquery-3.4.1.min.js"></script>
+
+	<!-- Include all compiled plugins (below), or include individual files as needed -->
+	<script src="js/popper.min.js"></script> 
+	<script src="js/bootstrap-4.4.1.js"></script>
+</body>
+</html>

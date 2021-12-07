@@ -1,0 +1,90 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta http-equiv="X-UA-Compatible" content="IE=edge">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <link href="css/bootstrap-4.4.1.css" rel="stylesheet">
+  <link rel="stylesheet" href="https://use.fontawesome.com/releases/v5.8.1/css/all.css" integrity="sha384-50oBUHEmvpQ+1lW4y57PTFmhCaXp0ML5d60M1M7uH2+nqUivzIebhndOJK28anvf" crossorigin="anonymous">
+  <title>Document</title>
+
+  <style type="text/css">
+    
+    body {
+      margin: 40px;
+    }
+    .wrapper {
+      display: grid;
+      grid-gap: 5px;
+      grid-template-columns: repeat(auto-fill, minmax(300px, 1fr));
+      grid-template-areas: 
+        "header content content"
+        "footer footer footer";
+      background-color: #fff;
+      color: #444;
+    }
+    .box {
+      background-color: #444;
+      color: #fff;
+      border-radius: 5px;
+      padding: 50px;
+      font-size: 150%;
+    }
+    .header, .footer {
+      background-color: #999;
+    }
+    
+    .header {
+      grid-area: header;
+    }
+    .content {
+      grid-area: content;
+    }
+    .footer {
+      grid-area: footer;
+    }
+    .header ul {
+      display: grid;
+      grid-gap: 10px;
+      grid-template-columns: 100px 135px 100px 150px;
+    }
+    .header li {
+      list-style-type: none;
+    }
+    .header img {
+      width: 120px;
+      position: relative;
+      top: 0%;
+      
+      
+    }
+
+   
+    
+  </style>
+</head>
+<body>
+    <div class="wrapper">
+      <div class="box header">
+        <img src="./images/winter.jpg" alt="">
+      </div>
+      <div class="box content">
+        Content
+      </div>
+      <div class="box footer">
+        Footer
+      </div>
+    </div>
+  
+
+
+
+
+  <!-- jQuery (necessary for Bootstrap's JavaScript plugins) --> 
+	<script src="js/jquery-3.4.1.min.js"></script>
+
+	<!-- Include all compiled plugins (below), or include individual files as needed -->
+	<script src="js/popper.min.js"></script> 
+	<script src="js/bootstrap-4.4.1.js"></script>
+</body>
+</html>
